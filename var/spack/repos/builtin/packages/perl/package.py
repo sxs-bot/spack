@@ -13,6 +13,7 @@
 #
 
 import os
+import platform
 import re
 from contextlib import contextmanager
 
@@ -199,9 +200,12 @@ class Perl(Package):  # Perl doesn't use Autotools, it should subclass Package
             args.append("ALL_STATIC=%s" % "define")
         if self.spec.satisfies('~threads'):
             args.extend(["USE_MULTI=undef", "USE_ITHREADS=undef", "USE_IMP_SYS=undef"])
-        if not self.spec.target.is_64bit():
+        if not self.is_64bit():
             args.append("WIN64=undef")
         return args
+
+    def is_64bit(self):
+        return platform.machine().endswith('64')
 
     def configure_args(self):
         spec = self.spec
@@ -285,7 +289,7 @@ class Perl(Package):  # Perl doesn't use Autotools, it should subclass Package
         if not is_windows:
             return
         win_install_path = os.path.join(self.prefix.bin, "MSWin32")
-        if self.spec.target.is_64bit():
+        if self.is_64bit():
             win_install_path += "-x64"
         else:
             win_install_path += "-x86"
