@@ -304,6 +304,8 @@ class URLFetchStrategy(FetchStrategy):
         urls = []
 
         for url in [self.url] + (self.mirrors or []):
+            # This must be skipped on Windows due to URL encoding
+            # of ':' characters on filepaths on Windows
             if sys.platform != "win32" and url.startswith('file://'):
                 path = urllib_parse.quote(url[len('file://'):])
                 url = 'file://' + path

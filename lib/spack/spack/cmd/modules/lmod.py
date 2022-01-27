@@ -7,7 +7,6 @@ import functools
 import os
 
 import llnl.util.filesystem
-from llnl.util.symlink import symlink
 
 import spack.cmd.common.arguments
 import spack.cmd.modules
@@ -60,10 +59,3 @@ def setdefault(module_type, specs, args):
     with spack.config.override(scope):
         writer = spack.modules.module_types['lmod'](spec, args.module_set_name)
         writer.update_module_defaults()
-
-    module_folder = os.path.dirname(writer.layout.filename)
-    module_basename = os.path.basename(writer.layout.filename)
-    with llnl.util.filesystem.working_dir(module_folder):
-        if os.path.exists('default') and os.path.islink('default'):
-            os.remove('default')
-        symlink(module_basename, 'default')

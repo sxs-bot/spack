@@ -36,7 +36,7 @@ def apply_patch(stage, patch_path, level=1, working_dir='.'):
     git_utils_path = os.environ.get('PATH', '')
     if sys.platform == 'win32':
         git = which_string('git', required=True)
-        git_root = os.path.dirname(git).split('/')[:-1]
+        git_root = git.split('\\')[:-2]
         git_root.extend(['usr', 'bin'])
         git_utils_path = os.sep.join(git_root)
 
