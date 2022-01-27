@@ -1619,11 +1619,12 @@ with
 
 .. note::
 
-  If you chose to install spack into a directory on Windows that is set up to require Administrative
-  Privleges (either by default like `C:\Program Files`, or by administrative settings), or have administrative
-  restrictions on a directory spack install files to such as `C:\Users\`, Spack will require elevated privleges
-  to run.
+  If you chose to install Spack into a directory on Windows that is set up to require Administrative
+  Privleges*, Spack will require elevated privleges to run.
 
+  *Administrative Privleges can be denoted either by default such as
+  `C:\Program Files`, or aministrator applied administrative restrictions
+  on a directory that spack installs files to such as `C:\Users\`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Step 3: Run and configure Spack
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
